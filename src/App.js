@@ -1,4 +1,5 @@
 import Expenses from "./Components/EXPENSES/Expenses";
+import ExpensesFilter from "./Components/NEWEXPENSE/ExpenseFilter";
 import NewExpense from "./Components/NEWEXPENSE/NewExpense";
 
 function App() {
@@ -25,9 +26,16 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+  const appData = (prevData) => {
+    const data = {
+      ...prevData,
+    };
+    console.log("In-app");
+    console.log(data);
+  };
   return (
     <section>
-      <NewExpense></NewExpense>
+      <NewExpense onValues={appData}></NewExpense>
       <Expenses expenses={expenses}></Expenses>
     </section>
   );
