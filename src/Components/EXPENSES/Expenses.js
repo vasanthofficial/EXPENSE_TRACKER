@@ -9,37 +9,34 @@ function Expenses(props) {
   const filterData = (prevData) => {
     console.log("IN EXPENSES");
     setYear(prevData);
+    console.log(prevData);
   };
+
+  //// FILTERING YEAR FEATURE
+  const filterYear = props.expenses.filter((filterYear) => {
+    return filterYear.date.getFullYear().toString() === year;
+  });
+
+  /// CONDITIONAL RENDERING
+
+  let emptyYear = <p>NO EXPENSE DONE THIS YEAR </p>;
+
+  if (filterYear.length > 0) {
+    emptyYear = filterYear.map((exp) => (
+      <ExpenseItem
+        key={exp.id}
+        title={exp.title}
+        amount={exp.amount}
+        date={exp.date}
+      />
+    ));
+  }
 
   return (
     <div>
       <Card className="expenses">
         <ExpensesFilter initial={year} onFunction={filterData}></ExpensesFilter>
-        <ExpenseItem
-          title={props.expenses[0].title}
-          amount={props.expenses[0].amount}
-          date={props.expenses[0].date}
-        />
-        <ExpenseItem
-          title={props.expenses[1].title}
-          amount={props.expenses[1].amount}
-          date={props.expenses[1].date}
-        />
-        <ExpenseItem
-          title={props.expenses[2].title}
-          amount={props.expenses[2].amount}
-          date={props.expenses[2].date}
-        />
-        <ExpenseItem
-          title={props.expenses[3].title}
-          amount={props.expenses[3].amount}
-          date={props.expenses[3].date}
-        />
-        <ExpenseItem
-          title={props.expenses[3].title}
-          amount={props.expenses[3].amount}
-          date={props.expenses[3].date}
-        />
+        {emptyYear}
       </Card>
     </div>
   );
