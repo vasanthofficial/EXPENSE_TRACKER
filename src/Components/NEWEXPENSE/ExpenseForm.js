@@ -1,12 +1,12 @@
-import "./ExpensesForm.css";
-import React, { useState } from "react";
+import './ExpensesForm.css';
+import React, { useState } from 'react';
 
 function ExpenseForm(props) {
   /// States
 
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
+  const [title, setTitle] = useState('');
+  const [amount, setAmount] = useState('');
+  const [date, setDate] = useState('');
 
   ///Handlers
   const titleHandler = (evt) => {
@@ -25,11 +25,15 @@ function ExpenseForm(props) {
       amount: amount,
       date: new Date(date),
     };
-    console.log("In-expenseForm");
+    //     const buttonHandler = (evt)=>{
+    // evt.preventDefault();
+    // <ExpenseAdder></ExpenseAdder>
+
+    console.log('In-expenseForm');
     console.log(data);
-    setTitle("");
-    setAmount("");
-    setDate("");
+    setTitle('');
+    setAmount('');
+    setDate('');
 
     props.onFunction(data);
   };
@@ -51,6 +55,7 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={props.cancelHandler}>Cancel</button>
         <button>Add Expenses</button>
       </div>
     </form>
